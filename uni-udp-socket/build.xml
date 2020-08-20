@@ -1,0 +1,55 @@
+<project name="sockets">
+
+	<!--Path of all jar-->
+	<path id="libs">
+		<pathelement path="src" />
+	</path>
+
+	<!--Compile all java file-->
+	<target name="java-compile" description="Compile java classes">
+		<echo>compiling sockets class</echo>
+		<javac classpathref="libs" debug="true" compiler="javac1.7" source="1.7" target="1.7" destdir="bin" srcdir="src" encoding="UTF-8">
+			<compilerarg line="-Xlint -Xlint:-unchecked" />
+		</javac>
+	</target>
+
+	<target name="run-client" description="run client" depends="java-compile">
+		<echo>run client</echo>
+		<java classname="client.udp.ClientUDP" fork="true" failonerror="true" classpath="bin">
+		</java>
+	</target>
+
+	<target name="run-server" description="run server" depends="java-compile">
+		<echo>run server</echo>
+		<java classname="server.udp.ServerUDP" fork="true" failonerror="true" classpath="bin">
+			<arg value="localhost" />
+		</java>
+	</target>
+
+	<target name="run-multicast-server" description="run server" depends="java-compile">
+		<echo>run multicast server </echo>
+		<java classname="multicast.server.MulticastSocketServer" fork="true" failonerror="true" classpath="bin">
+		</java>
+	</target>
+
+	<target name="run-multicast-client1" description="client1">
+
+		<echo>run multicast client1 </echo>
+		<java classname="multicast.client.MulticastSocketClient" fork="true" failonerror="true" classpath="bin">
+			<arg value="1" />
+		</java>
+	</target>
+	<target name="run-multicast-client2" description="client2">
+		<echo>run multicast client2 </echo>
+		<java classname="multicast.client.MulticastSocketClient" fork="true" failonerror="true" classpath="bin">
+			<arg value="2" />
+		</java>
+	</target>
+	<target name="run-multicast-client3" description="client3">
+		<echo>run multicast client3 </echo>
+		<java classname="multicast.client.MulticastSocketClient" fork="true" failonerror="true" classpath="bin">
+			<arg value="3" />
+		</java>
+	</target>
+
+</project>

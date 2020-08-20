@@ -1,0 +1,45 @@
+<project name="sockets">
+
+	<!--Path of all jar-->
+	<path id="libs">
+		<pathelement path="src" />
+	</path>
+
+	<!--Compile all java file-->
+	<target name="java-compile" description="Compile java classes">
+		<echo>compiling sockets class</echo>
+		<javac classpathref="libs" debug="true" compiler="javac1.8" source="1.8" target="52" destdir="bin" srcdir="src" encoding="UTF-8" includeantruntime="false">
+			<compilerarg line="-Xlint -Xlint:-unchecked" />
+		</javac>
+	</target>
+
+	<target name="run-server" description="run server" depends="java-compile">
+		<echo>run server</echo>
+		<java classname="server.Servidor" fork="true" failonerror="true" classpath="bin" >
+			
+		</java>
+	</target>
+
+	<target name="run-client" description="run client" depends="java-compile">
+		<echo>run client</echo>
+		<java classname="client.Cliente" fork="true" failonerror="true" classpath="bin">
+			<arg value="localhost"/>
+		</java>
+	</target>
+	
+	
+	<target name="run-server2" description="run server2" depends="java-compile">
+		<echo>run server</echo>
+		<java classname="server.udp.ServerUDP" fork="true" failonerror="true" classpath="bin" >
+			
+		</java>
+	</target>
+
+	<target name="run-client2" description="run client2" depends="java-compile">
+		<echo>run client</echo>
+		<java classname="client.udp.ClientUDP" fork="true" failonerror="true" classpath="bin">
+			<arg value="localhost"/>
+		</java>
+	</target>
+
+</project>
